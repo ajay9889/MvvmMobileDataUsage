@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="106dp"
+    android:layout_height="138dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="2dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/grey_round_background"
+    >
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="13sp"
+        android:text="2008" android:textStyle="bold"/>
+    <ImageView
+        android:id="@+id/image_item_clicks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="1dp"
+        />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="dfffff"
+        android:textSize="12sp"
+        android:textColor="@color/colorPrimary"
+        android:padding="2dp"/>
+</LinearLayout>

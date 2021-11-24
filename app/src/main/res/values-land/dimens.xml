@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="fab_margin">48dp</dimen>
+    <dimen name="ds_text_size_default">11sp</dimen>
+    <dimen name="ds_text_size_small">9sp</dimen>
+    <dimen name="ds_text_size_medium">15sp</dimen>
+    <dimen name="ds_text_size_large">18sp</dimen>
+    <dimen name="menu_icon_size">24dp</dimen>
+</resources>
