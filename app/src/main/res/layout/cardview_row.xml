@@ -25,8 +25,8 @@
         android:text="2008" android:textStyle="bold"/>
     <ImageView
         android:id="@+id/image_item_clicks"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/chart_data_icon"
         android:layout_gravity="center"
         android:layout_margin="1dp"
