@@ -1,7 +1,6 @@
-package com.mobile.data.usage
+package com.mobile.data.usage.Presentation.Activity
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -9,6 +8,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.mobile.data.usage.Core.base.BaseAppActivity
+import com.mobile.data.usage.R
 import com.mobile.data.usage.databinding.ActivityMainBinding
 
 class MainActivity : BaseAppActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {

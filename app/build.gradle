@@ -1,11 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+
 }
 
 android {
     compileSdk 31
-
     defaultConfig {
         applicationId "com.mobile.data.usage"
         minSdk 23
@@ -68,13 +69,15 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.paging:paging-runtime-ktx:3.1.0'
     implementation 'androidx.paging:paging-rxjava2-ktx:3.1.0'
+
+    def room_version = "2.3.0" // check latest version from docs
+
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-    // For manage with RX java
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
 
     // Koin DI
     final koin_version = '2.2.0-alpha-1'
@@ -90,7 +93,7 @@ dependencies {
 
     // retrofit response and request body log
     implementation "com.squareup.okhttp3:logging-interceptor:4.3.1"
-    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+
 
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 

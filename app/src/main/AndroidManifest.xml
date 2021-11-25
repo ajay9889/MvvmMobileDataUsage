@@ -14,7 +14,7 @@
         android:name=".MobileDataUsageApp"
         android:theme="@style/Theme.MobileAppUsage">
         <activity
-            android:name=".MainActivity"
+            android:name=".Presentation.Activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MobileAppUsage.NoActionBar">

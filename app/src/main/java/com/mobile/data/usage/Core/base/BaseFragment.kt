@@ -1,5 +1,4 @@
 package com.mobile.data.usage.Core.base
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -13,11 +12,8 @@ import androidx.viewbinding.ViewBinding
 import com.mobile.data.usage.R
 import com.mobile.data.usage.databinding.AppTitleBarBinding
 import io.reactivex.disposables.CompositeDisposable
-
 typealias Inflate<T> = (LayoutInflater,ViewGroup? , Boolean) ->T
-
 abstract class BaseFragment <vb: ViewBinding>(private val infalteRoot: Inflate<vb>): Fragment(){
-
         // to manage the single decelarion to use in Fragment
         protected val compositeDisposable=CompositeDisposable()
         private var _binding: vb?=null

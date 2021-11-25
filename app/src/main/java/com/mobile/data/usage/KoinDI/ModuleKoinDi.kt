@@ -3,9 +3,11 @@ import com.mobile.data.usage.BuildConfig
 import com.mobile.data.usage.Core.networkutils.CacheInterceptor
 import com.mobile.data.usage.Core.networkutils.OnlineCacheInterceptor
 import com.mobile.data.usage.DataSource.repository.MobileDataSourceRepositoryImpl
+import com.mobile.data.usage.Database.Databasehelper
 import com.mobile.data.usage.Domain.repository.MobileDataSourceRepository
 import com.mobile.data.usage.MobileDataUsageApp
 import com.mobile.data.usage.Presentation.ViewModel.HomeViewModel
+import com.mobile.data.usage.Presentation.ViewModel.YearViewModel
 import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -21,6 +23,9 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 val appModule = module {
+    single {
+        Databasehelper.getDatabase(androidContext())
+    }
     single{
         OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -53,6 +58,9 @@ val appModule = module {
 val viewModelModule = module {
     viewModel{
         HomeViewModel(androidApplication() as MobileDataUsageApp)
+    }
+    viewModel{
+        YearViewModel(androidApplication() as MobileDataUsageApp)
     }
 
 }

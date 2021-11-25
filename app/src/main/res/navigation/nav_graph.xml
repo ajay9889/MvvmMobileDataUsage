@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.mobile.data.usage.FirstFragment"
+        android:name="com.mobile.data.usage.Presentation.Fragment.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/yearly_grid_data">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,8 +17,8 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.mobile.data.usage.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:name="com.mobile.data.usage.Presentation.Fragment.SecondFragment"
+        android:label="@string/yearly_data"
         tools:layout="@layout/fragment_second">
 
         <action

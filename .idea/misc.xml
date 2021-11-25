@@ -6,13 +6,20 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/drawable/grey_round_background.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_navigation_back_button.xml" value="0.30833333333333335" />
+        <entry key="app/src/main/res/drawable/left_icon.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/loader_of_progress.xml" value="0.30833333333333335" />
+        <entry key="app/src/main/res/drawable/next_icon.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/layout/app_title_bar.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/cardview_row.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/ds_view_progress_dialog.xml" value="0.33229166666666665" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/qurater_item.xml" value="0.33229166666666665" />
+        <entry key="app/src/main/res/layout/select_year_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/yearly_chart_data.xml" value="0.2786458333333333" />
+        <entry key="app/src/main/res/layout/yearly_grid_data.xml" value="0.2786458333333333" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.33229166666666665" />
       </map>
     </option>

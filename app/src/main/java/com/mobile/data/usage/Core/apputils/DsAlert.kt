@@ -1,8 +1,15 @@
 package com.mobile.data.usage.Core.apputils
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
+import com.mobile.data.usage.R
+import android.widget.ProgressBar
+
+
+
+
 
 object DsAlert {
     fun showAlertDialog(
@@ -43,6 +50,16 @@ object DsAlert {
             .setTitle(title)
             .setMessage(message)
             .setCancelable(true)
-            .show()
+            .apply { positiveButton.let { positiveString ->
+               setPositiveButton(positiveString) { dialog, which ->
+                   dialog.cancel()
+               }
+             }
+            }.show()
     }
+
+    fun getProgressDialogue(context: Context) :ProgressBar {
+        return ProgressBar(context, null, android.R.attr.progressBarStyleSmall)
+    }
+
 }
