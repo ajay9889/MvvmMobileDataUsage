@@ -66,4 +66,6 @@ abstract class BaseAppActivity <vb: ViewBinding>(private val infalteRoot: Inflat
                 }
         }
 
+
+
 }

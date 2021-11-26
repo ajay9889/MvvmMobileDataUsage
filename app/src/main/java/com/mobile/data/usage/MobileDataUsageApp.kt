@@ -27,6 +27,8 @@ class MobileDataUsageApp : MultiDexApplication() {
         synceApiData()
     }
 
+
+
     private fun synceApiData() {
         val mWorkManager = WorkManager.getInstance(this)
         mWorkManager.cancelAllWorkByTag(SyncMobileDataUsage.WORK_INFO_MANAGER_KEY)
