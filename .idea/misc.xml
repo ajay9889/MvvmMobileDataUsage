@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../Library/Android/sdk/platforms/android-31/data/res/drawable/spinner_dropdown_background.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/drawable/chart_data_icon.xml" value="0.2972222222222222" />
         <entry key="app/src/main/res/drawable/grey_round_background.xml" value="0.278125" />
@@ -21,7 +22,7 @@
         <entry key="app/src/main/res/layout/select_year_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/yearly_chart_data.xml" value="0.2786458333333333" />
         <entry key="app/src/main/res/layout/yearly_grid_data.xml" value="0.2786458333333333" />
-        <entry key="app/src/main/res/menu/menu_main.xml" value="0.33229166666666665" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.165" />
       </map>
     </option>
   </component>

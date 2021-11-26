@@ -15,6 +15,9 @@ interface RoomDataAccessObejct {
     @Query("select _id,SUM(volume_of_mobile_data) as volume_of_mobile_data , MIN(volume_of_mobile_data) as min_volume_of_mobile_data, year , quarter from MobileDataDomain WHERE year>2007 group by year")
     fun getAllMobileDatas(): List<MobileDataDomain>
 
+    @Query("select _id,SUM(volume_of_mobile_data) as volume_of_mobile_data , MIN(volume_of_mobile_data) as min_volume_of_mobile_data, year , quarter from MobileDataDomain WHERE year =:selectYear group by year")
+    fun getAllMobileDatasByYear(selectYear: String): List<MobileDataDomain>
+
 
     @Query("select * from MobileDataDomain WHERE year =:selectYear group by quarter")
     fun getSelectedYearData(selectYear: String): List<MobileDataDomain>

@@ -1,21 +1,19 @@
 package com.mobile.data.usage.Presentation.Fragment
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
-import android.widget.ProgressBar
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mobile.data.usage.Adapter.CardListAdapter
 import com.mobile.data.usage.Core.apputils.DsAlert
 import com.mobile.data.usage.Core.apputils.GridSpacingItemDecoration
 import com.mobile.data.usage.Core.base.BaseFragment
+import com.mobile.data.usage.Core.networkutils.NetworkConnectivity
 import com.mobile.data.usage.Domain.Model.MobileDataDomain
 import com.mobile.data.usage.Presentation.ViewModel.HomeViewModel
 import com.mobile.data.usage.R
@@ -25,15 +23,18 @@ import org.koin.android.ext.android.inject
 
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * Created by Ajay to show the commulative data usage per year. Also user can filter the year
  */
 class FirstFragment : BaseFragment<YearlyGridDataBinding>(YearlyGridDataBinding::inflate) {
     private val mHomeViewModel: HomeViewModel by inject()
-    lateinit var mAlertDialog : ProgressBar
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAlertDialog =  DsAlert.getProgressDialogue(requireContext())
-        mAlertDialog.visibility=View.VISIBLE
+        viewBinding.progressBar.visibility=View.VISIBLE
+        initRecyclerViewDecorate()
         observeData()
     }
     fun observeData(){
@@ -41,29 +42,52 @@ class FirstFragment : BaseFragment<YearlyGridDataBinding>(YearlyGridDataBinding:
             when(it)
             {
                 HomeViewModel.RequestState.network_error->{
-
-                    DsAlert.show(requireActivity() ,
+                    DsAlert.showAlertFinish(requireActivity() ,
                         requireContext().getString(R.string.warning),
                         requireContext().getString(R.string.net_error),
                         requireContext().getString(R.string.ok_btn)
                     );
+                    viewBinding.progressBar.visibility=View.GONE
                 }
                 HomeViewModel.RequestState.error->{
-                    DsAlert.show(requireActivity() ,
+                    DsAlert.showAlert(requireActivity() ,
                         requireContext().getString(R.string.warning),
                         requireContext().getString(R.string.normal_error),
                         requireContext().getString(R.string.ok_btn)
                     );
+                    viewBinding.progressBar.visibility=View.GONE
                 }
                 HomeViewModel.RequestState.finished->{
-                    initRecyclerView()
+                    initRecyclerView("")
+                    viewBinding.progressBar.visibility=View.GONE
                 }
             }
-            mAlertDialog.visibility=View.GONE
-
         })
+        mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.finished)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.clear()
+        menu.add(1,1, Menu.NONE, "All");
+        for(i in 2007 until 2022)
+        {
+            menu.add(1, i, Menu.NONE, i.toString());
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            1 ->{
+                initRecyclerView("")
+            }
+            else ->{
+                initRecyclerView(item.itemId.toString())
+
+            }
+        }
+        return   super.onOptionsItemSelected(item)
+    }
     fun showMinimumUseInThEQuerter(mRecord: MobileDataDomain){
         val navController = requireActivity().findNavController(R.id.nav_host_fragment_content_main)
         navController.navigate(R.id.action_FirstFragment_to_SecondFragment, Bundle().apply {
@@ -71,7 +95,7 @@ class FirstFragment : BaseFragment<YearlyGridDataBinding>(YearlyGridDataBinding:
         })
     }
     @SuppressLint("CheckResult")
-    fun initRecyclerView(){
+    fun initRecyclerViewDecorate(){
         viewBinding.recyclerView.setHasFixedSize(true)
         val spanCount = 5 // 3 columns
 
@@ -95,15 +119,32 @@ class FirstFragment : BaseFragment<YearlyGridDataBinding>(YearlyGridDataBinding:
         val itemDecoration = GridSpacingItemDecoration(spanCount, spacing, includeEdge)
         viewBinding.recyclerView.addItemDecoration(itemDecoration);
         viewBinding.recyclerView.setOnFlingListener(null);
-        val itemRecords = CardListAdapter(requireContext(),"0", this::showMinimumUseInThEQuerter)
-        viewBinding.recyclerView.adapter=itemRecords
-        mHomeViewModel.getDataUsageRecords().subscribe(
-                Consumer { pagingdata ->
-                    itemRecords.submitData(
-                        lifecycle,
-                        pagingdata
-                    )
+
+        val itemRecordsAdapter = CardListAdapter(requireContext(),"0", this::showMinimumUseInThEQuerter)
+        viewBinding.recyclerView.adapter=itemRecordsAdapter
+
+        itemRecordsAdapter.addLoadStateListener { loadState ->
+            if(loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && itemRecordsAdapter.itemCount<1 )
+            {
+                if(!NetworkConnectivity.isNetworkConnected(requireContext())) {
+                    mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.network_error)
+                }else{
+                    mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.error)
                 }
-            )
+            }else if (loadState.source.refresh is LoadState.Error) {
+                mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.error)
+            }
+        }
+    }
+    @SuppressLint("CheckResult")
+    fun initRecyclerView(selectedYear: String){
+        mHomeViewModel.getDataUsageRecords(selectedYear).subscribe(
+            Consumer { pagingdata ->
+                (viewBinding.recyclerView.adapter as CardListAdapter).submitData(
+                    lifecycle,
+                    pagingdata
+                )
+            }
+        )
     }
 }

@@ -56,7 +56,7 @@ val appModule = module {
 }
 
 val viewModelModule = module {
-    viewModel{
+    single{
         HomeViewModel(androidApplication() as MobileDataUsageApp)
     }
     viewModel{

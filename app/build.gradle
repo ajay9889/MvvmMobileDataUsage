@@ -69,6 +69,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.paging:paging-runtime-ktx:3.1.0'
     implementation 'androidx.paging:paging-rxjava2-ktx:3.1.0'
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
     def room_version = "2.3.0" // check latest version from docs
 

@@ -12,7 +12,7 @@
     <string name="status">Data Usage!</string>
     <string name="warning">Oops..</string>
     <string name="net_error">Network error, please check internet connection.</string>
-    <string name="normal_error">Some error occured.</string>
+    <string name="normal_error">Try again, Possible no records..!</string>
     <string name="ok_btn">Okay</string>
     <string name="yearly_data">Yearly Consumption</string>
 </resources>
