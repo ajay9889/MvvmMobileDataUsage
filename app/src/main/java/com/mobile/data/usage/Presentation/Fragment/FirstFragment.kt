@@ -45,8 +45,7 @@ class FirstFragment : BaseFragment<YearlyGridDataBinding>(YearlyGridDataBinding:
                     DsAlert.showAlertFinish(requireActivity() ,
                         requireContext().getString(R.string.warning),
                         requireContext().getString(R.string.net_error),
-                        requireContext().getString(R.string.ok_btn)
-                    );
+                        requireContext().getString(R.string.ok_btn));
                     viewBinding.progressBar.visibility=View.GONE
                 }
                 HomeViewModel.RequestState.error->{
@@ -126,13 +125,9 @@ class FirstFragment : BaseFragment<YearlyGridDataBinding>(YearlyGridDataBinding:
         itemRecordsAdapter.addLoadStateListener { loadState ->
             if(loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && itemRecordsAdapter.itemCount<1 )
             {
-                if(!NetworkConnectivity.isNetworkConnected(requireContext())) {
-                    mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.network_error)
-                }else{
-                    mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.error)
-                }
-            }else if (loadState.source.refresh is LoadState.Error) {
                 mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.error)
+            }else if (loadState.source.refresh is LoadState.Error) {
+                mHomeViewModel.mRequestState.value =(HomeViewModel.RequestState.network_error)
             }
         }
     }
