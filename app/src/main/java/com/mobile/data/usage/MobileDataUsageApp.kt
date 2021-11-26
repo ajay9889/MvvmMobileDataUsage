@@ -23,7 +23,6 @@ class MobileDataUsageApp : MultiDexApplication() {
             androidContext(this@MobileDataUsageApp)
             modules(modules)
         }
-
         synceApiData()
     }
 
@@ -45,10 +44,6 @@ class MobileDataUsageApp : MultiDexApplication() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
-    }
-
-    fun resetKoin() {
-        stopKoin()
     }
 
     override fun onTerminate() {

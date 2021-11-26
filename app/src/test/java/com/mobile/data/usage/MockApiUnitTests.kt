@@ -9,6 +9,7 @@ import com.mobile.data.usage.Presentation.ViewModel.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -16,6 +17,7 @@ import org.junit.runner.RunWith
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
 import org.koin.java.KoinJavaComponent
 import org.mockito.Mock
@@ -25,10 +27,8 @@ import org.robolectric.RuntimeEnvironment
 
 @RunWith(MockitoJUnitRunner::class)
 class MockApiUnitTests {
-
     @Mock
     private lateinit var mockContext: Context
-
     @Before
     fun setup() {
         startKoin {
@@ -57,5 +57,10 @@ class MockApiUnitTests {
                 Assert.assertNotNull(dbHelper.RoomDataAccessObejct().getSelectedYearData(""))
             }
         }
+    }
+
+    @After
+    fun tearDown() {
+        stopKoin()
     }
 }

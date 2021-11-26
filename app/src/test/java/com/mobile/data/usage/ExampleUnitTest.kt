@@ -4,6 +4,7 @@ import android.content.Context
 import com.mobile.data.usage.Database.Databasehelper
 import com.mobile.data.usage.KoinDI.appModule
 import com.mobile.data.usage.KoinDI.viewModelModule
+import org.junit.After
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
@@ -11,6 +12,7 @@ import org.junit.runner.RunWith
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
 import org.koin.java.KoinJavaComponent
 import org.mockito.Mock
@@ -46,5 +48,10 @@ class ExampleUnitTest {
         assertNotNull(dbInstance.RoomDataAccessObejct().getSelectedYearData(""))
         assertNotNull(dbInstance.RoomDataAccessObejct().getSelectedYearData("2008"))
         assertNotNull(dbInstance.RoomDataAccessObejct().getSelectedYearData("2016"))
+    }
+
+    @After
+    fun tearDown() {
+        stopKoin()
     }
 }
